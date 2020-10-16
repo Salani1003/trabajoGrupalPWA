@@ -1,9 +1,11 @@
 const bd = require("./../utils/bd")
 
 
-const update = (obj, uidCorreo) =>
+const update = (obj, Correo) =>
     bd('usuarios')
-        .where(uidCorreo)
+        .where({ uidCorreo: Correo })
         .update(obj)
 
 module.exports = { update }
+
+

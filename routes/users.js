@@ -5,18 +5,12 @@ const { validateToken } = require('./../middlewares/users')
 
 
 
+const confirm = (req, res) =>
+  service
+    .update({ habilitado: true }, req.query.uid)
+    .then((response) => res.json(`Tu cuenta fue habilitada correctamente. Fran te queremos!`))
+    .catch((e) => res.status(500).json(e))
 
-const confirm = async (req, res) => {
-  try {
-    console.log(req)
-    const habilitar = await service
-      .update({ obj: { habilitado: true }, uidCorreo: req.query.uid })
-  } catch (e) {
-    console.log(e);
-    res.status(500).json(e);
-
-  }
-}
 
 
 router.get('/confirm', validateToken, confirm)
